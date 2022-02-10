@@ -1,0 +1,69 @@
+
+= PATRONES: Connect 4
+MÁSTER EN DESARROLLO DE SOFTWARE 2022
+:toc-title: Index
+:toc: none
+
+:idprefix:
+:idseparator: -
+:imagesdir: images
+
+
+== Vocabulary
+
+
+[plantuml, DiagramaVocabulary, svg]
+....
+
+Game *-d-> Board
+Game *-d-> "2" Player
+Game *-d-> Turn
+
+Turn -> "2" Player
+
+Player .> Board
+Player *--> "21" Token
+
+Board .> Goal
+Board *-> "6x7" Position
+Board .> Token
+
+Token -> Position
+Token <|-d- RedToken
+Token <|-d- YellowToken
+
+Goal <|-d- Horizontal
+Goal <|-d- Vertical
+Goal <|-d- Diagonal
+
+....
+
+
+== InitialState
+
+[plantuml, DiagramaInitialState, svg]
+....
+
+class Connect4
+
+....
+
+== FinalState
+
+[plantuml, DiagramaFinalState, svg]
+....
+
+class Connect4
+
+....
+
+
+
+== Instructions
+
+[plantuml, DiagramaInstructions, svg]
+....
+
+class Connect4
+
+....
