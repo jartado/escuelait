@@ -15,6 +15,9 @@ MÁSTER EN DESARROLLO DE SOFTWARE 2022
 [plantuml, DiagramaVocabulary, svg]
 ....
 
+abstract Token
+abstract Goal
+
 Game *-d-> Board
 Game *-d-> "2" Player
 Game *-d-> Turn
@@ -22,6 +25,7 @@ Game *-d-> Turn
 Turn -> "2" Player
 
 Player .> Board
+Player *-> Goal
 Player *--> "21" Token
 
 Board .> Goal
@@ -48,13 +52,11 @@ object Game
 object Player1
 object RedToken1
 object RedTokenN
-object RedToken21
 object Board
 object Turn
 object Player2
 object YelowToken1
 object YelowTokenN
-object YelowToken21
 object Position1x1
 object PositionNxM
 object Position6x7
@@ -73,11 +75,9 @@ Board *-d-> Position6x7
 
 Player1 *--> RedToken1
 Player1 *--> RedTokenN
-Player1 *--> RedToken21
 
 Player2 *--> YelowToken1
 Player2 *--> YelowTokenN
-Player2 *--> YelowToken21
 
 ....
 
@@ -90,19 +90,15 @@ object Game
 object Player1
 object RedToken1
 object RedTokenN
-object RedToken21
 object Board
 object Turn
 object Player2
 object YelowToken1
 object YelowTokenN
-object YelowToken21
 object Position1x1
 object Position1x2
-object Position1x3
 object Position1x4
 object PositionNxM
-object Position6x7
 
 Game *--> Turn
 Game *--> Player1
@@ -114,26 +110,20 @@ Turn --> Player2
 
 Board *-u-> Position1x1
 Board *-u-> Position1x2
-Board *-u-> Position1x3
 Board *-u-> Position1x4
 Board *-u-> PositionNxM
-Board *-u-> Position6x7
 
 Player1 *--> RedToken1
 Player1 *--> RedTokenN
-Player1 *--> RedToken21
 
 Player2 *--> YelowToken1
 Player2 *--> YelowTokenN
-Player2 *--> YelowToken21
 
 RedToken1 --> Position1x1
 RedTokenN --> Position1x2
-RedToken21 --> Position1x3
 
 YelowToken1 --> Position1x4
 YelowTokenN --> PositionNxM
-YelowToken21 --> Position6x7
 
 ....
 
