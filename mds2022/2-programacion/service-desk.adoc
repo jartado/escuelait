@@ -1,0 +1,73 @@
+
+= SERVICE DESK
+MÁSTER EN DESARROLLO DE SOFTWARE 2022
+:toc-title: Index
+:toc: none
+
+:idprefix:
+:idseparator: -
+:imagesdir: images
+
+
+
+== Petition Case
+
+[plantuml, DiagramaVocabulary, svg]
+....
+
+start
+
+
+package "Service Desk" #EEE {
+
+
+    switch ( Petition Case? )
+
+        case ( ANALYTICS SD OWNER )
+            :Text 1;
+        case ( IT / NAV ) 
+            :Text 2;
+        case ( NAV - VENDORS ) 
+            :Text 2;
+        case ( HR ) 
+            :Text 2;
+        case ( ADMIN, BUDGET ) 
+            :Text 2;
+        case ( COMMERCIAL, FACILITIES ) 
+            :Text 2;
+        case ( Caso 101 ) 
+            :Text 2;
+        case ( Caso 199 ) 
+            :Text 2;
+
+    endswitch
+
+}
+
+package "Timesheets" #EEE {
+
+    if ( CASOS 1 - 6 ) then
+        :Text 1;
+        stop
+    endif
+
+    if ( CASO 99 ) then
+        :Text 2;
+        kill
+    endif
+
+    if ( CASO 101 ) then
+        :Text 3;
+        kill
+    endif
+
+    if ( CASO 199 ) then
+        :Text 4;
+        kill
+    endif
+
+}
+
+end
+
+....
