@@ -1,0 +1,229 @@
+
+== 1. Modela el Dominio de Restaurante
+
+Modela el dominio de las siguientes palabras claves: Restaurante, Comensal, Terraza, Comedor, Desayuno, Comida, Cena, Menú, Carta, Plato, Cebolla, Trigo, Envío, Crítico, Camarero, Cocinero, Jefe de Cocina, Cocina, Horno, Equipo, JefeDePersonal, Entrevista, Ensayo, Reglas, ...
+
+https://www.planttext.com/api/plantuml/svg/UhzxlqDnIM9HIMbk3XTNGM9oTc9wgeAIUsfnIURXpNaAAQaA0Qb5nVbvYJbA2jK4LIGMAmIu1YbKrs9Nw9oVcvfNd9YJMWnMwkplYqTfScPU8bIPCqWPLn1GEh6qA36l95L1LzSEf1sBc3E66D15N5mEgNafG3y20000__y30000
+
+https://www.planttext.com/api/plantuml/svg/R5BBJWCn3BpxAwnotlq0L5MLe4BYXFW3At5NAx9EbMIHQCjNzTW31pw8No1q7wH9SvmPUMRi_9o_rZwG2trd07QatgXXN3on3-ttIL0plh3pLiWiy020yIb3tkDhb53lI08dw4OyVTWhMMCe5NGxmwHJoJDl-P4d6xnJIXNiWrMjKCvTK7QsmAaZTmFVI73ytiRWy0cGD41RLQifV84F7KhvLEN2uxBMzOpXFIehlZVH2hA2ezSS9QFhlXujun3DszZmfcH86pNMDIJjdk1_vgYu2XCS_OMPmUMnqbMs_9oT5bdWu-9Xla0wRJWMm9f5nt_r2m00__y30000
+
+https://www.planttext.com/api/plantuml/svg/R5AxJiGm4EptArP7XvHym0cXaqw87br5jx9NKOHZHtuqF3w9YfA2uZw8Ny3nEJax8PrdTdPcH_dz_ZauJzQ7GG6C95weOzmzilFz-KkZP3oQWRKZnMw7Rm0OFw78ENoAGnGiQSy5EerBO_5625709xQMNcaD7wCr5Uzde-bgk5exWHKaUbsA7uPHCKbJoqXBgXm7icpD9eazV_fUPFm308hxq3JD_JL3oTnUc1HbgqZdRU0bw8g9rAg0-ebtxqqpD_mlbsi6c2so91yDC0km3MtEXtiKHhkWOjIQNZdiqOWm5aENtRcuQVVKmj9LAdwfkrsmk8SworrQb82oMpYmbl5l_0C00F__0m00
+
+https://www.planttext.com/api/plantuml/svg/R9DBJiGm38RtFaLKTaYT0o24Hff1F2GaXBY0IJrLHSP1IOk4W2EnOWSB5ZqGLo0aARYFBjhcint7_zz-VtwjVOkkxVO6u07rFTQaYZFoRTE_iwf8RQnk60lr3A32fGrwhsv20dOEkIL1Ds4ZbEjOAi2vTMod2UJ6Q8zSoQ9Bsj6MPdlbn5D-xD-iEj1QpuFXGUpHJCDNnFs7M6_9urF7Iziq5SueyOnT6spb61TSEweQcWX4TzQOMV6jQ-hS-nK0XBZAbkL9rbNYmuYJ992UENLGT0oJff8bAoGPwGov9eMINYEK1XvGmOMQj4-1uvUoBCTUBSS6gm3aETHgbSTNH-5Zt8ND5-AvQKZHrhegdJyM_RRuSrUovEo815VpMixy3zB44BaayPw0T5sy3msY-VD0j1zWJLo5t_07003__mC0
+
+
+
+
+[plantuml, Restaurante, svg]
+....
+
+package "Gestión de Personal" as PER {}
+package "Gestión de Comensales" as COM {}
+package "Gestión de Cocina" as COC {}
+
+Restaurante --> COM
+Restaurante --> COC
+Restaurante --> PER
+
+....
+
+
+
+
+[plantuml, GestionPersonal, svg]
+....
+
+package "Gestión de Personal" {
+
+    class Restaurante
+    class Ensayo
+    class Regla
+    class Empleado
+    class JefeDePersonal #ccc
+    class JefeDeCocina #ccc
+    class Cocinero #ccc
+    class Camarero #ccc
+    class Entrevista
+}
+
+Restaurante o--> Ensayo
+Restaurante o--> Regla
+Restaurante o--> Empleado
+Regla <.d. Empleado : consulta
+
+JefeDePersonal o--> Entrevista
+JefeDePersonal .u.> Regla : define
+JefeDePersonal .u.> Ensayo : organiza
+Entrevista .u.> Empleado : contrata
+
+Empleado <|-d- JefeDePersonal
+Empleado <|-d- Camarero
+Empleado <|-d- Cocinero
+Cocinero <|-d- JefeDeCocina
+
+....
+
+
+
+
+[plantuml, GestionComensales, svg]
+....
+
+package "Gestión de Comensales" {
+
+    class Restaurante
+    class Comedor #ccc
+    class Terraza #ccc
+    class Carta
+    class ZonaComensales
+    class Comensal
+    class Cocina
+    class Empleado
+    class Comanda
+    class Camarero #ccc
+    class Crítico #ccc
+}
+
+
+Restaurante o--> Comensal
+Restaurante *--> Cocina
+Restaurante o--> Carta
+Restaurante o--> Empleado
+Restaurante o---> ZonaComensales
+ZonaComensales <|-- Comedor
+ZonaComensales <|-- Terraza
+
+Empleado <|-- Camarero
+
+Comensal .u.> Carta : consulta
+Comensal .u.> ZonaComensales : ocupa
+Comensal <|-- Crítico
+
+Cocina o--> Comanda
+Camarero .> Comanda : agrega
+Comanda -> Comensal
+
+....
+
+
+
+
+[plantuml, GestionCocina, svg]
+....
+
+package "Gestión de Cocina" {
+
+    class Restaurante
+    class Carta
+    class Cocina
+    class Horno
+    class Cocinero
+    class Comanda
+    class JefeDeCocina
+    class ComandaEnvío #ccc
+    class ComandaComensal #ccc
+    class Menú
+    class Desayuno #ccc
+    class Comida #ccc
+    class Cena #ccc
+    class Plato
+    class Ingrediente
+    class Cebolla #ccc
+    class Trigo #ccc
+}
+
+
+Restaurante o--> Carta
+Restaurante *--> Cocina
+
+Cocina o--> Cocinero
+Cocina o--> Comanda
+Cocina o--> Horno
+Cocina o--> JefeDeCocina
+
+Comanda o--> Menú
+Comanda o--> Plato
+Comanda "n" --> Cocinero
+Comanda <|--- ComandaEnvío
+Comanda <|--- ComandaComensal
+
+JefeDeCocina ..> Carta : define
+JefeDeCocina ..> Cocinero : coordina
+
+Carta <|-- Desayuno
+Carta <|-- Comida
+Carta <|-- Cena
+Carta o--> Menú
+Carta o--> Plato
+
+Menú o--> Plato
+Plato o--> Ingrediente
+Ingrediente <|-- Cebolla
+Ingrediente <|-- Trigo
+
+....
+
+
+
+
+== 2. Analogía Requisitos Restaurante
+
+Desarrolla, en no más de 50 palabras, una analogía entre la disciplina de **requisitos** de una aplicación software (requisito funcional, casos de uso/historia de usuario, requisito no funcional, interfaz gráfica y de comunicaciones, ...) y el negocio expuesto anteriormente.
+
+Los requisitos para un Restaurante (en función de que estas decisiones vengan ya dadas podrían formar parte también de la fase de Análisis y Diseño):
+
+- Necesidad de espacio para comensales (Comedor, Terraza, ...)
+- Decir el lugar del Restaurante
+- Decir el nombre del Restaurante
+- Decidir el Tipo de Cocina (Española, Italiana, ...)
+- Decidir el Tipo de Servicio (Auto-servicio, atención en mesa, ...)
+- Decidir el Tipo de Ambiente (Actuaciones musicales, etiqueta, ...)
+
+
+
+== 3. Analogía Análisis y Diseño Restaurante
+
+Desarrolla, en no más de 50 palabras, una analogía entre la disciplina de **análisis y diseño** de una aplicación software (modelo, vista, controlador, tecnologías, ...) y el negocio expuesto anteriormente.
+
+Análisis y diseño en un Restaurante:
+
+- Confección de la Carta (Menús y Platos).
+- Elección calidad-precio de ingredientes, elaboración y presentación de platos y consulta a proveedores.
+- Proyecto de distribución, mobiliario y decoración del local.
+- Proyecto de distribución y equipamiento de la cocina.
+- Entrevistas de trabajo.
+
+
+
+== 4. Analogía Implementación Restaurante
+
+Desarrolla, en no más de 50 palabras, una analogía entre la disciplina de **implementación** de una aplicación software (paquetes, clases, unitarias, ...) y el negocio expuesto anteriormente.
+
+Implementación en un Restaurante:
+
+- Construcción / acondicionamiento del local.
+- Construcción / equipamiento de la cocina.
+- Contratación de empleados.
+- Acuerdos con proveedores.
+- Impresión de las cartas.
+- Registro en plataformas de comida a domicilio.
+- Publicidad a clientes.
+- Invitaciones a críticos.
+
+
+
+== 5. Analogía Pruebas Restaurante
+
+Desarrolla, en no más de 50 palabras, una analogía entre la disciplina de **pruebas** de una aplicación software (fallos, calidad, validación, ...) y el negocio expuesto anteriormente.
+
+Pruebas en un Restaurante:
+
+- Pruebas previas de los platos de los cocineros con el Jefe de Cocina.
+- Opiniones de los clientes en redes.
+- Opiniones de los clientes in-situ.
+- Opiniones de los críticos.
+- Nivel de satisfacción de los empleados.
+- Informes financieros del negocio.
+- Control de fechas de caducidad de los ingredientes.
+- Control de la limpieza del local y la cocina.
+

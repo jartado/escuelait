@@ -10,120 +10,10 @@ MÁSTER EN DESARROLLO DE SOFTWARE 2022
 
 
 
-
-== 1. Imperative Grid
-
-Dado este diagrma:
-https://www.planttext.com/api/plantuml/svg/SoWkIImgAStDuU9oG331BAwYr8BKn18kg-2CpBGI3QNY_DAI32LDQwYuGdb6PawgWeQYXaPwQebB9b1FNdAgQqfwgePINduHIAc2hQsj0eOar1mWKCWiLj2eJ2tMHBSgDR6uX3YR82gnMrIU2f93iGTc0LXAHy48Q8ULIr5YETGW7GLJe4XnINu1C3XIyr8WuG9X0000
-
-Escribe el correspondiente texto para la herramienta imperativeGrid:
-https://github.com/USantaTecla-tech-dhtml/tool-grid/tree/master/0-imperativeGrid/v0.0
-
-
-[
-    While(
-        Not(
-            Equals(
-                GetDistanceEdge("east"),
-                GetDistanceEdge("south")
-            )
-        ),
-        [
-            Shift("south")
-        ]
-    ),
-    While(
-        Not(
-            Equals(
-                GetDistanceEdge("east"),
-                GetDistanceEdge("west")
-            )
-        ),
-        [
-            Shift("east")
-        ]
-    ),
-    Shift("west", 2),
-    Draw("east", 5)
-]
-
-
-== 2. Álgebra de Boole
-
-Escribe la expresión correspondiente a la salida "suma" del circuito sumador total de dos bits del apartado Algebra de Boole del tema Conocimiento.
-
-=== Suma = A or B or Cin
-=== Cout = (A x B) + Cin x (A or B)
-
-
-
-== 3. Lenguaje de Signos
-
-Propón un lenguaje de signos/símbolos, no hablado/escrito, que no sea el "semáforo" o el "policía de tráfico" y justifica tu respuesta.
-
-El lenguaje de los abanicos: https://blog.fuertehoteles.com/wp-content/uploads/2013/08/lenguaje-abanico.jpg
-
-
-
-== 4. Las Meninas
+== 1. Las Meninas
 
 Modela con UML el cuadro de "Las Meninas de Velázquez" de tal forma que se observe qué diferencias existen con otros cuadros en los que el observador no se siente dentro de la escena (Pista: relaciones entre observador, personajes y posiciones)
 
-
-=== Cuadro Normal
-
-[plantuml, DiagramaVocabulary, svg]
-....
-
-object Law
-object Ayuso
-object AyusosBrother
-object Piter
-object Stalin
-object ManuelaCarmena
-
-object Innocence
-object ProvenGuilty
-object LaVerdad
-
-Law -d-> Innocence
-Law -d-> ProvenGuilty
-
-Ayuso <-r-> AyusosBrother
-Ayuso -u-> Innocence
-
-AyusosBrother -u-> Innocence
-
-Piter <-l-> Stalin
-Piter <-r-> ManuelaCarmena
-Piter -u-> "?" Innocence
-
-Stalin -u-> ProvenGuilty
-
-ManuelaCarmena -d-> LaVerdad
-
-....
-
-
-=== Cuadro Normal
-
-[plantuml, DiagramaVocabulary, svg]
-....
-
-Painter .> Picture
-
-Observer "n" .l.> Picture
-
-Picture *-d-> Scene
-
-Scene *-d-> "0..n" Character
-
-....
-
-
-=== Cuadro de las Meninas
-
-En Las Meninas la escena del cuadro contiene a su vez un cuadro y se incluye al pintor como un personaje más.
 
 [plantuml, DiagramaVocabulary, svg]
 ....
@@ -149,126 +39,86 @@ Character --> "2" ReflectedCharacterHypotheticalPosition
 
 
 
+== 2. Puerta XOR
 
-== 5. Triángulo de Pascal
-
-Describe el triangulo de Tartaglia de forma recursiva:
-
-
-=== Descripción del Triángulo de Pascal
-
-[source, java]
-----
-
-// Para todo elemento <= fila:
-
-class Triangulo {
-
-    int[][] Triangulo(int n) {
-
-        If(n = 1) {
-
-            [1];
-
-        } else {
-
-            this.concat(
-                this.Triangulo(n-1),
-                concat(1, ultimaFila(Triangulo(n-1)), 1)
-        }
-
-    }
-
-    private ultimaFila() {}
-
-    private concat() {}
-}
-
-----
+Dada la tabla de verdad (combinaciones de cierto y falso) de la "puerta" XOR (especificación en tabla verde de https://es.wikipedia.org/wiki/Puerta_XOR), escribe la expresión lógica de la salida (tercera columna) correspondiente a la entrada (primeras 2 columnas)
 
 
-=== Descripción del Triángulo de Pascal
 
-[source, java]
-----
+== 3. Corregir Diagrama
 
-// Para todo elemento <= fila:
+Comenta la posible incorrección del siguiente diagrama:
 
-Triangulo(fila, elemento) {
-
-    If(fila = 1) {
-        1
-    } else if (elemento = 1) {
-        valorPosicion(fila-1, elemento)
-    } else if (elemento = i) {
-        valorPosicion(fila-1, elemento-1)
-    } else {
-        valorPosicion(fila-1, elemento-1) + valorPosicion(fila-1, elemento)
-    }
-}
-
-----
+https://www.planttext.com/api/plantuml/svg/RP7D2eCm48Jl-nIBzxo0b6AXHOyzz5vM8n8RioM9s48Vlchyg_IKPUPRTeOapfFrRQC1I6lkxerwALC159gSmvDH3McWt7bBXSUWPcr3XYSajMJgqZ90WF7m4P8x8sOiFAkyBimJ2d6SJc6CHQia0N1Ub_t5wChsyOw36o4vV0x2Of_PaDxQSX3aujyKNzggD8hZ46I4_A9c_yWvs8vD0JQBGoE1F_Pc7ZkDKPTAUpSaNHj3KXhPVyKN
 
 
-=== Descripción del Triángulo de Pascal
+Diagrama de clases:
+- Debería estar en inglés
+- Humano (clase abstracta) no puede heredar de una clase no abstracta (Animal)
 
-[source, java]
-----
+Diagrama de objetos: 
+- Debería estar en inglés
+- Entre objetos puede existir herencia
+- No pueden existir objetos de clases abstractas (TioEugenio:Humano)
 
-// Para todo elemento <= fila:
-
-valorPosicion(fila, elemento) {
-
-    If(fila = 1) {
-        1
-    } else if (elemento = 1) {
-        valorPosicion(fila-1, elemento)
-    } else if (elemento = i) {
-        valorPosicion(fila-1, elemento-1)
-    } else {
-        valorPosicion(fila-1, elemento-1) + valorPosicion(fila-1, elemento)
-    }
-}
-
-----
+DUDA: Si "Humano" fuera una clase NO abstracta ¿podríamos tener en un mismo diagrama de objetos, a la vez, un objeto "TioEugenio:Humano" y un objeto "TioEugenio:Granjero"? (sin que haya relación de herencia entre objetos, por supuesto)
 
 
-=== Clase TrianguloPascal
 
-[source, java]
-----
+== 4. Modelo del Máster
 
-public class TrianguloPascal {
+Realiza un modelo (... esencial ... aproximadamente, no más de 20 tipos de entidad y algún diagrama de actividad o estados para algún proceso) de este mismo master de Programación y Diseño del Software.
 
-    private int[] triangulo;
+[plantuml, DiagramaClasesMaster, svg]
+....
 
-    public TrianculoPascal(dimension) {
+Master *-down-> Teacher
+Master *-down-> Content
+Content *-down-> "54" Unit
 
-         return this.dimension;
-    }
+Viewer <|-- Critic
+Viewer <|-- Artist
 
-    public construirTriangulo(int[] triangulo) {
+Viewer "0..n" -r-> Master
 
-        private int[] trianguloAmpliado;
-        private int[] fila = this.triangulo[triangulo.lenght()];
-        private int[] filaSiguiente;
+Unit *-down-> "0..*" Practice
 
-        for(int i = 0, i < this.fila.lenght(), i++) {
+Practice <|-- Exercise
+Practice <|-- Test
 
-            this.filaSiguiente[i] = this.fila[i-1] + this.fila[i]
-        }
+Critic -> Artist
 
-        return this.trianguloAmpliado = this.triangulo.append(this.filaSiguiente);
+Artist -> Exercise
 
-        
-
-// 1)              1
-// 2)            1   1
-// 3)          1   2   1
-// 4)        1   3   3   1
-// 5)      1   4   6   4   1
+....
 
 
-lenght([[1], [1,1], [1,2,1], ...])
 
-----
+== 5. Unidades Patrones y Conocimiento
+
+Relaciona, con aproximadamente 50 palabras, las unidades de Patrones y Conocimiento vistos anteriormente.
+
+
+El *Conocimiento* es la compresión de una realidad *Compleja*, mediante la busqueda de *Patrones* 
+
+
+
+[plantuml, DiagramaVocabulary, svg]
+....
+
+class Patrones
+class Conocimiento
+class Datos
+class Informacion
+class Objetos
+class Clases
+class Relacion
+class Jerarquia
+class JerarquiaDeComposicion
+class JerarquiaDeClasificacion
+class JerarquiaDeAsociacion
+class JerarquiaDeClasificacion
+class Conjunto
+class Compresión
+
+....
